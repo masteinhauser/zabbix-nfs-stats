@@ -1,0 +1,10 @@
+Source: zabbix-nfs-stats
+Section: unknown
+Priority: Extra
+Maintainer: Italo Santos <italo.santos@locaweb.com.br>
+Standards-Version: 3.8.0
+Homepage: http://www.locamail.com.br/
+
+Package: zabbix-nfs-stats
+Architecture: all
+Description: Script to get NFS v3 statistics end to Zabbix Server

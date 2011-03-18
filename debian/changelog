@@ -1,0 +1,7 @@
+zabbix-nfs-stats (1.0.1) stable; urgency=low
+  * Eviando saida do crontab para o /dev/null 
+ -- Italo Santos <italo.santos@locaweb.com.br>  Fri, 03 Dec 2010 12:16:57 -0200
+
+zabbix-nfs-stats (1.0) stable; urgency=low
+  * Versão inicial
+ -- Italo Santos <italo.santos@locaweb.com.br>  Wed, 27 Oct 2010 14:20:55 -0200

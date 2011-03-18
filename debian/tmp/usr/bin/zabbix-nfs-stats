@@ -1,0 +1,52 @@
+#!/bin/bash
+
+NFS=/proc/net/rpc/nfs
+proc="getattr setattr lookup access readlink read write create mkdir symlink mknod remove rmdir rename link readdir readdirplus fsstat fsinfo pathconf commit"
+current=/tmp/curr-nfs-stats.tmp
+last=/tmp/last-nfs-stats.tmp
+zabbix_conf=/etc/zabbix/zabbix_agentd.conf
+
+zsend() {
+    zabbix_sender -c $zabbix_conf -k $1 -o $2 -s "${HOSTNAME/.*/}"
+}
+
+nfs_stats(){
+    if [ -e $NFS ]; then
+    
+        i=4
+        for a in $proc; do
+            echo -n "$a "
+            grep proc3 $NFS \
+                | cut -f $i -d ' ' \
+                | awk '{print $1}'
+            i=$(expr $i + 1)
+        done
+    else
+        echo "$NFS not found"
+    fi
+}
+
+get_stats() {
+    if [ -e $current ]; then
+
+        cp $current $last
+        nfs_stats > $current
+
+        declare -a alast
+        declare -a acurrent
+
+        index=($( awk '{ print $1 }' $last | xargs ))
+        alast=($( awk '{ print $2 }' $last | xargs ))
+        acurrent=($( awk '{ print $2 }' $current | xargs))
+
+        for (( i=0 ; $i != ${#alast[*]} ; i++ ))
+        do
+#            echo "${index[$i]} $(( ${acurrent[$i]} - ${alast[$i]} ))"
+            zsend nfs.${index[$i]} $(( ${acurrent[$i]} - ${alast[$i]} ))
+        done
+    else
+        nfs_stats > $current
+    fi
+}
+
+get_stats

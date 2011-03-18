@@ -1,0 +1,3 @@
+ead8299c51317ec0d3e5aa51c7f999d2  etc/cron.d/zabbix-nfs-stats
+8244656fb3cb9e3fd37ff6bf5037b6dc  usr/bin/zabbix-nfs-stats
+f76e288d3ac81973242d38ea268a6f9b  usr/share/doc/zabbix-nfs-stats/changelog.gz

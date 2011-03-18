@@ -1,0 +1,9 @@
+Package: zabbix-nfs-stats
+Version: 1.0.1
+Architecture: all
+Maintainer: Italo Santos <italo.santos@locaweb.com.br>
+Installed-Size: 52
+Section: unknown
+Priority: Extra
+Homepage: http://www.locamail.com.br/
+Description: Script to get NFS v3 statistics end to Zabbix Server
